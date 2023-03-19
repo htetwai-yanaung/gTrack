@@ -15,7 +15,7 @@
                     <form action="{{ route('cars.store') }}" method="POST" class="container px-3">
                         @csrf
                         <div class="row mb-4">
-                            <div class="col-3">
+                            <div class="col-4">
                                 <label for="" class="align-middle">Car Name :</label>
                             </div>
                             <div class="col">
@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <div class="col-3">
+                            <div class="col-4">
                                 <label for="" class="align-middle">Model :</label>
                             </div>
                             <div class="col">
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <div class="col-3">
+                            <div class="col-4">
                                 <label for="" class="align-middle">Color :</label>
                             </div>
                             <div class="col">
@@ -48,7 +48,18 @@
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <div class="col-3">
+                            <div class="col-4">
+                                <label for="" class="align-middle">Car Number :</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" name="number" class="form-control" placeholder="number">
+                                @error('number')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-4">
                                 <label for="" class="align-middle">License :</label>
                             </div>
                             <div class="col">
@@ -59,7 +70,7 @@
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <div class="col-3">
+                            <div class="col-4">
                                 <label for="" class="align-middle">Year :</label>
                             </div>
                             <div class="col">
@@ -70,7 +81,7 @@
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <div class="col-3">
+                            <div class="col-4">
                                 <label for="" class="align-middle">Fuel :</label>
                             </div>
                             <div class="col">

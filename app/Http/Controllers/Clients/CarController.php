@@ -35,6 +35,7 @@ class CarController extends Controller
             'year' => 'required',
             'color' => 'required',
             'fuel' => 'required',
+            'number' => 'required',
         ]);
         $car = [
             'name' => $request->name,
@@ -44,6 +45,7 @@ class CarController extends Controller
             'year' => $request->year,
             'color' => $request->color,
             'fuel' => $request->fuel,
+            'number' => $request->number,
         ];
         Car::create($car);
         return redirect()->route('cars.index');
