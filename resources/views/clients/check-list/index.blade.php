@@ -74,51 +74,56 @@
                 },
                 dataType: 'json',
                 success: function(res){
-                    $list = '';
-                    for($i=0;$i<res.length;$i++){
-                        console.log(res[$i]);
-                        $list += `
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <label for="">${res[$i]['title']}</label>
-                            <form action="{{ route('checkList.delete') }}" method="get">
-                                @csrf
-                                <input type="hidden" name="checkListId" value="${res[$i]['id']}">
-                                <button class="btn btn-outline-danger btn-sm">&times;</button>
-                            </form>
-                        </li>
-                        `;
-                    }
-                    $('#list').html($list);
+                    showList(res);
+                }
+            });
+        })
+
+        $('#carList1').change(function(e){
+            $carId = e.target.value;
+            localStorage.setItem('carId', e.target.value);
+            $.ajax({
+                type: 'get',
+                url: 'http://127.0.0.1:8000/check-list/list',
+                data: {
+                    'carId' : $carId
+                },
+                dataType: 'json',
+                success: function(res){
+                    showList(res);
                 }
             });
         })
 
         $.ajax({
-                type: 'get',
-                url: 'http://127.0.0.1:8000/check-list/list',
-                data: {
-                    'carId' : $selectedCarId
-                },
-                dataType: 'json',
-                success: function(res){
-                    $list = '';
-                    for($i=0;$i<res.length;$i++){
-                        console.log(res[$i]['title']);
-                        $checkListId = res[$i]['id'];
-                        $list += `
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <label for="">${res[$i]['title']}</label>
-                            <form action="{{ route('checkList.delete') }}" method="get">
-                                @csrf
-                                <input type="hidden" name="checkListId" value="${res[$i]['id']}">
-                                <button class="btn btn-outline-danger btn-sm">&times;</button>
-                            </form>
-                        </li>
-                        `;
-                    }
-                    $('#list').html($list);
-                }
+            type: 'get',
+            url: 'http://127.0.0.1:8000/check-list/list',
+            data: {
+                'carId' : $selectedCarId
+            },
+            dataType: 'json',
+            success: function(res){
+                showList(res);
+            }
         });
+
+        showList = (res) => {
+            $list = '';
+            for($i=0;$i<res.length;$i++){
+                console.log(res[$i]);
+                $list += `
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <label for="">${res[$i]['title']}</label>
+                    <form action="{{ route('checkList.delete') }}" method="get">
+                        @csrf
+                        <input type="hidden" name="checkListId" value="${res[$i]['id']}">
+                        <button class="btn btn-outline-danger btn-sm">&times;</button>
+                    </form>
+                </li>
+                `;
+            }
+            $('#list').html($list);
+        }
     })
 </script>
 @endsection
