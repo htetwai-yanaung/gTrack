@@ -84,7 +84,7 @@
             localStorage.setItem('carId', e.target.value);
             $.ajax({
                 type: 'get',
-                url: 'http://127.0.0.1:8000/check-list/list',
+                url: 'http://139.180.190.148/gtruck/public/check-list/list',
                 data: {
                     'carId' : $carId
                 },
@@ -97,7 +97,7 @@
 
         $.ajax({
             type: 'get',
-            url: 'http://127.0.0.1:8000/check-list/list',
+            url: 'http://139.180.190.148/gtruck/public/check-list/list',
             data: {
                 'carId' : $selectedCarId
             },
