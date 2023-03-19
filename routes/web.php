@@ -45,6 +45,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
         Route::get('create', 'create')->name('cars.create');
         Route::post('store', 'store')->name('cars.store');
         Route::get('details/{id}', 'details')->name('cars.details');
+        Route::get('edit/{id}', 'edit')->name('cars.edit');
+        Route::post('update/{id}', 'update')->name('cars.update');
     });
     Route::prefix('drivers')->controller(DriverController::class)->group(function() {
         Route::get('index', 'index')->name('drivers.index');

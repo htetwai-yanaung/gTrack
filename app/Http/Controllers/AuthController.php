@@ -81,8 +81,12 @@ class AuthController extends Controller
     public function checkList(){
         $id = Auth::user()->id;
         $car = CarDriver::select('car_id')->where('user_id', $id)->first();
-        $carId = $car->car_id;
-        $checkList = CheckList::where('car_id', $carId)->get();
+        $carId = '';
+        $checkList = [];
+        if($car){
+            $carId = $car->car_id;
+            $checkList = CheckList::where('car_id', $carId)->get();
+        }
         return view('drivers.check-list')->with([
             'checkList' => $checkList,
         ]);

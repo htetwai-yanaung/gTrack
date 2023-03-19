@@ -23,7 +23,8 @@ class CarSeeder extends Seeder
                 'color' => 'white',
                 'license' => 'B/00128/04',
                 'year' => 2019,
-                'fuel' => '92'
+                'fuel' => '92',
+                'company_id' => 2,
             ],
             [
                 'name' => 'Volkswagen Group',
@@ -32,7 +33,8 @@ class CarSeeder extends Seeder
                 'color' => 'black',
                 'license' => 'B/00160/06',
                 'year' => 2020,
-                'fuel' => '92'
+                'fuel' => '92',
+                'company_id' => 2,
             ],
             [
                 'name' => 'Stellantis',
@@ -41,7 +43,8 @@ class CarSeeder extends Seeder
                 'color' => 'brown',
                 'license' => 'B/01231/12',
                 'year' => 2018,
-                'fuel' => '92'
+                'fuel' => '92',
+                'company_id' => 2,
             ],
             [
                 'name' => 'General Motors',
@@ -50,7 +53,8 @@ class CarSeeder extends Seeder
                 'color' => 'white',
                 'license' => 'B/05641/07',
                 'year' => 2021,
-                'fuel' => '92'
+                'fuel' => '92',
+                'company_id' => 2,
             ],
             [
                 'name' => 'Ford',
@@ -59,7 +63,8 @@ class CarSeeder extends Seeder
                 'color' => 'black',
                 'license' => 'B/16451/07',
                 'year' => 2021,
-                'fuel' => '92'
+                'fuel' => '92',
+                'company_id' => 2,
             ],
         ];
 

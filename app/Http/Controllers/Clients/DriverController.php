@@ -6,12 +6,13 @@ use App\Models\User;
 use App\Models\Driver;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DriverController extends Controller
 {
     //index
     public function index(){
-        $drivers = User::where('role', 'driver')->get();
+        $drivers = User::where('role', 'driver')->where('company_id',Auth::user()->id)->get();
         return view('clients.drivers.index')->with([
             'drivers' => $drivers,
         ]);

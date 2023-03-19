@@ -38,7 +38,8 @@
                                 <td>{{ $car->year }}</td>
                                 <td>{{ $car->fuel }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('cars.details',$car->id) }}"><i class="text-success" data-feather="eye"></i></a>
+                                    <a href="{{ route('cars.details',$car->id) }}"><i class="text-success" data-feather="eye"></i></a> |
+                                    <a href="{{ route('cars.edit',$car->id) }}"><i class="text-success" data-feather="edit-2"></i></a>
                                 </td>
                             </tr>
                             @endforeach

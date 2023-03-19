@@ -9,12 +9,13 @@ use App\Models\CarDriver;
 use App\Models\CheckList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
     //index
     public function index(){
-        $cars = Car::get();
+        $cars = Car::where('company_id',Auth::user()->id)->get();
         return view('clients.cars.index')->with([
             'cars' => $cars,
         ]);
@@ -39,6 +40,7 @@ class CarController extends Controller
         ]);
         $car = [
             'name' => $request->name,
+            'company_id' => Auth::user()->id,
             'model' => $request->model,
             'color' => $request->color,
             'license' => $request->license,
@@ -55,11 +57,46 @@ class CarController extends Controller
     public function details($id){
         $car = Car::with('drivers')->find($id);
         $checkList = CheckList::where('car_id',$id)->get();
-        $drivers = User::where('role', 'driver')->where('status', '0')->get();
+        $drivers = User::where('role', 'driver')->where('status', '0')->where('company_id',Auth::user()->id)->get();
         return view('clients.cars.details')->with([
             'car' => $car,
             'drivers' => $drivers,
             'checkList' => $checkList
         ]);
+    }
+
+    //edit
+    public function edit($id){
+        $car = Car::where('id',$id)->first();
+        return view('clients.cars.edit')->with([
+            'car' => $car,
+        ]);
+    }
+
+    //update
+    public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required',
+            'model' => 'required',
+            'color' => 'required',
+            'license' => 'required',
+            'year' => 'required',
+            'color' => 'required',
+            'fuel' => 'required',
+            'number' => 'required',
+        ]);
+        $car = [
+            'name' => $request->name,
+            'company_id' => Auth::user()->id,
+            'model' => $request->model,
+            'color' => $request->color,
+            'license' => $request->license,
+            'year' => $request->year,
+            'color' => $request->color,
+            'fuel' => $request->fuel,
+            'number' => $request->number,
+        ];
+        Car::where('id', $id)->update($car);
+        return redirect()->route('cars.index');
     }
 }
