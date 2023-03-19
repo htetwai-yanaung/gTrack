@@ -61,7 +61,7 @@
             $clId = e.target.value;
             $.ajax({
                 type: 'get',
-                url: 'http://139.180.190.148/gtruck/public/check-list/check',
+                url: 'http://139.180.190.148/gtruck/public/driver/check-list/check',
                 data: {
                     'checkListId' : $clId,
                     'status' : '1'
@@ -73,7 +73,7 @@
             $clId = e.target.value;
             $.ajax({
                 type: 'get',
-                url: 'http://139.180.190.148/gtruck/public/check-list/check',
+                url: 'http://139.180.190.148/gtruck/public/driver/check-list/check',
                 data: {
                     'checkListId' : $clId,
                     'status' : '0'
