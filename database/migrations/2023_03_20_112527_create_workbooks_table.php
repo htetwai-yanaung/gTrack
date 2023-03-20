@@ -13,13 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('check_lists', function (Blueprint $table) {
+        Schema::create('workbooks', function (Blueprint $table) {
             $table->id();
-            $table->string('cl_number');
+            $table->foreignId('user_id');
             $table->foreignId('car_id');
-            $table->string('title');
-            $table->string('note')->nullable();
-            $table->enum('status',[0,1])->default(0);
+            $table->string('started_date');
+            $table->string('ended_date');
+            $table->string('started_time');
+            $table->string('ended_time');
+            $table->string('destination');
+            $table->integer('distance');
+            $table->string('fuel');
+            $table->integer('expenses');
             $table->timestamps();
         });
     }
@@ -31,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('check_lists');
+        Schema::dropIfExists('workbooks');
     }
 };

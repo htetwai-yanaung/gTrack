@@ -41,10 +41,6 @@
                                         @csrf
                                         <input type="hidden" name="role" value="driver">
                                         <input type="hidden" name="company_name" value="">
-										{{-- <div class="mb-3">
-											<label class="form-label">Name</label>
-											<input class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name" />
-										</div> --}}
 										<div class="mb-3">
 											<label class="form-label">Company ID</label>
 											<input class="form-control @error('company_id') is-invalid @enderror form-control-lg" type="text" name="company_id" placeholder="Enter your company id" />

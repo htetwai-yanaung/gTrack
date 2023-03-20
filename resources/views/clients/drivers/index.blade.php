@@ -11,16 +11,16 @@
                 <div class="card flex-fill">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="card-title mb-0">Latest Projects</h5>
-                        {{-- <a href="{{ route('drivers.create') }}" class="btn btn-primary">&plus; Add Driver</a> --}}
+                        <a href="{{ route('drivers.create') }}" class="btn btn-primary">&plus; Add Driver</a>
                     </div>
                     <table class="table table-hover my-0">
                         <thead>
                             <tr>
                                 <th>No.</th>
                                 <th>Name</th>
-                                <th class="">Age</th>
-                                <th>License</th>
-                                <th>Address</th>
+                                <th class="d-none d-xl-table-cell">Age</th>
+                                <th class="d-none d-sm-table-cell">License</th>
+                                <th class="d-none d-md-table-cell">Address</th>
                                 <th class="">Photo</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -30,9 +30,9 @@
                             <tr>
                                 <td>{{ $driver->id }}</td>
                                 <td>{{ $driver->name }}</td>
-                                <td>{{ $driver->age }}</td>
-                                <td>{{ $driver->license }}</td>
-                                <td>{{ $driver->address }}</td>
+                                <td class="d-none d-xl-table-cell">{{ $driver->age }}</td>
+                                <td class="d-none d-sm-table-cell">{{ $driver->license }}</td>
+                                <td class="d-none d-md-table-cell">{{ $driver->address }}</td>
                                 <td>
                                     <img src="
                                     @if ($driver->photo == null)

@@ -40,7 +40,7 @@ class AuthController extends Controller
             return redirect()->route('cars.index');
         }
         else{
-            return redirect()->route('driver.index');
+            return redirect()->route('driver.checkList');
         }
     }
 
@@ -77,18 +77,5 @@ class AuthController extends Controller
         return redirect()->route('driver.index');
     }
 
-    //checklist
-    public function checkList(){
-        $id = Auth::user()->id;
-        $car = CarDriver::select('car_id')->where('user_id', $id)->first();
-        $carId = '';
-        $checkList = [];
-        if($car){
-            $carId = $car->car_id;
-            $checkList = CheckList::where('car_id', $carId)->get();
-        }
-        return view('drivers.check-list')->with([
-            'checkList' => $checkList,
-        ]);
-    }
+
 }

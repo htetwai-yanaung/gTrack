@@ -56,7 +56,7 @@ class CarController extends Controller
     //details
     public function details($id){
         $car = Car::with('drivers')->find($id);
-        $checkList = CheckList::where('car_id',$id)->get();
+        $checkList = CheckList::where('car_id',$id)->orderBy('status','asc')->get();
         $drivers = User::where('role', 'driver')->where('status', '0')->where('company_id',Auth::user()->id)->get();
         return view('clients.cars.details')->with([
             'car' => $car,

@@ -11,7 +11,7 @@
         content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+    <link rel="shortcut icon" href="{{ url('img/icons/icon-48x48.png') }}" />
 
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
@@ -36,8 +36,8 @@
 
                     <li class="sidebar-item @if(Route::currentRouteName() == 'cars.index') active @endif">
                         <a class="sidebar-link" href="{{ route('cars.index') }}">
-                            <i class="align-middle" data-feather="sliders"></i> <span
-                                class="align-middle">Dashboard</span>
+                            <i class="align-middle" data-feather="list"></i> <span
+                                class="align-middle">Car list</span>
                         </a>
                     </li>
 
@@ -47,7 +47,12 @@
 
                     <li class="sidebar-item @if(Route::currentRouteName() == 'drivers.index') active @endif">
                         <a class="sidebar-link" href="{{ route('drivers.index') }}">
-                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">Drivers</span>
+                            <i class="align-middle" data-feather="users"></i> <span class="align-middle">Drivers</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @if(Route::currentRouteName() == 'drivers.workbook') active @endif">
+                        <a class="sidebar-link" href="{{ url('drivers/workbook') }}">
+                            <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Workbook</span>
                         </a>
                     </li>
 
@@ -74,7 +79,7 @@
 
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav navbar-align">
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
                                 data-bs-toggle="dropdown">
                                 <div class="position-relative">
@@ -220,7 +225,7 @@
                                     <a href="#" class="text-muted">Show all messages</a>
                                 </div>
                             </div>
-                        </li>
+                        </li> --}}
                         <li class="nav-item dropdown">
                             <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
                                 data-bs-toggle="dropdown">
@@ -288,13 +293,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ url('js/app.js') }}"></script>
 
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
             var gradient = ctx.createLinearGradient(0, 0, 0, 225);
             gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
             gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
-            // Line chart
             new Chart(document.getElementById("chartjs-dashboard-line"), {
                 type: "line",
                 data: {
@@ -359,10 +363,9 @@
                 }
             });
         });
-    </script>
-    <script>
+    </script> --}}
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Pie chart
             new Chart(document.getElementById("chartjs-dashboard-pie"), {
                 type: "pie",
                 data: {
@@ -387,10 +390,9 @@
                 }
             });
         });
-    </script>
-    <script>
+    </script> --}}
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Bar chart
             new Chart(document.getElementById("chartjs-dashboard-bar"), {
                 type: "bar",
                 data: {
@@ -433,8 +435,8 @@
                 }
             });
         });
-    </script>
-    <script>
+    </script> --}}
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             var markers = [{
                     coords: [31.230391, 121.473701],
@@ -500,8 +502,8 @@
                 map.updateSize();
             });
         });
-    </script>
-    <script>
+    </script> --}}
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
             var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
@@ -512,7 +514,7 @@
                 defaultDate: defaultDate
             });
         });
-    </script>
+    </script> --}}
     @yield('scriptSource')
 </body>
 

@@ -16,27 +16,27 @@
                     <table class="table table-hover my-0">
                         <thead>
                             <tr>
-                                <th>No.</th>
+                                <th class="d-none d-sm-table-cell">No.</th>
                                 <th>Name</th>
-                                <th>Model</th>
-                                <th>Color</th>
-                                <th>License</th>
-                                <th>Year</th>
-                                <th>Fuel</th>
+                                <th class="d-none d-sm-table-cell">Model</th>
+                                <th class="d-none d-xl-table-cell">Color</th>
+                                <th class="d-none d-sm-table-cell">License</th>
+                                <th class="d-none d-xl-table-cell">Year</th>
+                                <th class="d-none d-md-table-cell">Fuel</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($cars as $car)
                             <tr>
-                                <td>{{ $car->id }}</td>
+                                <td class="d-none d-sm-table-cell">{{ $car->id }}</td>
                                 <td>{{ $car->name }}</td>
-                                <td>{{ $car->model }}</td>
-                                <td>{{ $car->color }}</td>
-                                <td>{{ $car->license }}</td>
+                                <td class="d-none d-sm-table-cell">{{ $car->model }}</td>
+                                <td class="d-none d-xl-table-cell">{{ $car->color }}</td>
+                                <td class="d-none d-sm-table-cell">{{ $car->license }}</td>
                                 {{-- <td><span class="badge bg-success">{{ $car->name }}</span></td> --}}
-                                <td>{{ $car->year }}</td>
-                                <td>{{ $car->fuel }}</td>
+                                <td class="d-none d-xl-table-cell">{{ $car->year }}</td>
+                                <td class="d-none d-md-table-cell">{{ $car->fuel }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('cars.details',$car->id) }}"><i class="text-success" data-feather="eye"></i></a> |
                                     <a href="{{ route('cars.edit',$car->id) }}"><i class="text-success" data-feather="edit-2"></i></a>

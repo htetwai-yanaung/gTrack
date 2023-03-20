@@ -24,25 +24,7 @@
 
 <body>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Position</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-center">
-            <h3>Are you a Owner or Driver ?</h3>
-            <div class="p-4">
-                <a href="{{ route('register') }}" class="btn btn-primary">Owner</a> or
-                <a href="{{ route('driver.registerPage') }}" class="btn btn-success">Driver</a>
-            </div>
-        </div>
-    </div>
-    </div>
-  </div>
-  <!-- Modal -->
+
   <main class="d-flex w-100">
         <div class="container d-flex flex-column">
             <div class="row vh-100">
@@ -87,7 +69,7 @@
                                             <span class="form-check-label">
                                                 Have no account ?
                                             </span>
-                                            <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Register</a>
+                                            <a href="{{ route('register') }}">Register</a>
                                         </div>
                                         <div class="text-center mt-3">
                                             {{-- <a href="index.html" class="btn btn-lg btn-primary">Sign in</a> --}}

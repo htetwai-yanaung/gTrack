@@ -4,126 +4,43 @@
 <main class="content">
     <div class="container-fluid p-0">
 
-        <h1 class="h3 mb-3"><strong>Car</strong> Details</h1>
+        <h1 class="h3 mb-3"><strong>Check</strong> List</h1>
 
-        <div class="row gap-2">
-            <div class="col-5">
-                <form id="form1" action="{{ route('checkList.store') }}" method="POST"  class="bg-white shadow position-relative">
-                    @csrf
-                    <div class="p-3">
-                        <h3 class="card-title">Check list</h3>
+        <div class="row">
+            <div class="col d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Latest Projects</h5>
+                        <a href="{{ route('checkList.create') }}" class="btn btn-primary">&plus; Create Check List</a>
                     </div>
-                    <div class="p-3 border-top">
-                        <select name="car_id" id="carList1" class="form-select @error('car_id') is-invalid @enderror">
-                            <option value="" class="d-none">Choose a car</option>
-                            @foreach ($cars as $car)
-                                <option value="{{ $car->id }}">{{ $car->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="p-3 border-top">
-                        <div class="d-flex">
-                            <input type="text" form="form1" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="title">
-                            <button class="btn btn-primary ms-2">Add</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col">
-                <div class="bg-white shadow">
-                    <div class="px-3 py-2 d-flex justify-content-between align-items-center">
-                        <h3 class="card-title">Check list</h3>
-                        <div>
-                            <select name="car_id" id="carList" class="form-select">
-                                <option value="" class="">Choose a car</option>
-                                @foreach ($cars as $car)
-                                    <option value="{{ $car->id }}">{{ $car->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <ul class="list-group"  id="list">
-                        <li class="list-group-item">
-                            <label for="">title</label>
-                            <a href="" class="float-end"><i data-feather="x"></i></a>
-                        </li>
-                    </ul>
                 </div>
             </div>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 ">
+            @foreach ($cl_list as $cl)
+            <div class="col mb-3">
+                <div class="bg-white rounded shadow p-3 h-100">
+                    <h5 class="card-title text-primary">{{ $cl[0]->cl_number }} (<small>{{ $cl[0]->created_at->format('d-m-Y') }}</small>)</h5>
+
+                    @foreach ($cl as $list)
+                        <div class="py-1">
+                            @if ($list->status == '0')
+                            <i class="text-warning" data-feather="alert-circle"></i>
+                            @else
+                            <i class="text-success" data-feather="check-circle"></i>
+                            @endif
+                            <span class="lh-lg"> {{ $list->title }}</span>
+                        </div>
+                    @endforeach
+
+
+                </div>
+            </div>
+            @endforeach
+
         </div>
 
     </div>
 </main>
 @endsection
 
-@section('scriptSource')
-<script>
-    $(document).ready(function() {
-        $selectedCarId = localStorage.getItem('carId');
-        $('#carList').val($selectedCarId);
-        $('#carList1').val($selectedCarId);
-        $('#carList').change(function(e){
-            $carId = e.target.value;
-            localStorage.setItem('carId', e.target.value);
-            $.ajax({
-                type: 'get',
-                url: 'http://127.0.0.1:8000/check-list/list',
-                data: {
-                    'carId' : $carId
-                },
-                dataType: 'json',
-                success: function(res){
-                    showList(res);
-                }
-            });
-        })
-
-        $('#carList1').change(function(e){
-            $carId = e.target.value;
-            localStorage.setItem('carId', e.target.value);
-            $.ajax({
-                type: 'get',
-                url: 'http://139.180.190.148/gtruck/public/check-list/list',
-                data: {
-                    'carId' : $carId
-                },
-                dataType: 'json',
-                success: function(res){
-                    showList(res);
-                }
-            });
-        })
-
-        $.ajax({
-            type: 'get',
-            url: 'http://139.180.190.148/gtruck/public/check-list/list',
-            data: {
-                'carId' : $selectedCarId
-            },
-            dataType: 'json',
-            success: function(res){
-                showList(res);
-            }
-        });
-
-        showList = (res) => {
-            $list = '';
-            for($i=0;$i<res.length;$i++){
-                console.log(res[$i]);
-                $list += `
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <label for="">${res[$i]['title']}</label>
-                    <form action="{{ route('checkList.delete') }}" method="get">
-                        @csrf
-                        <input type="hidden" name="checkListId" value="${res[$i]['id']}">
-                        <button class="btn btn-outline-danger btn-sm">&times;</button>
-                    </form>
-                </li>
-                `;
-            }
-            $('#list').html($list);
-        }
-    })
-</script>
-@endsection

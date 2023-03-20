@@ -7,34 +7,9 @@
         <h1 class="h3 mb-3"><strong>Drivers</strong> Check list</h1>
 
         <div class="row">
-            {{-- <div class="col-5">
-                <ul class="list-group"  id="list">
-                    <li class="list-group-item">
-                        <label for="1">title</label>
-                        <input class="form-check-input float-end" id="1" type="checkbox" value="option1">
-                    </li>
-                    <li class="list-group-item">
-                        <label for="1">title</label>
-                        <input class="form-check-input float-end" id="1" type="checkbox" value="option1">
-                    </li>
-                    <li class="list-group-item">
-                        <label for="1">title</label>
-                        <input class="form-check-input float-end" id="1" type="checkbox" value="option1">
-                    </li>
-                    <li class="list-group-item">
-                        <label for="1">title</label>
-                        <input class="form-check-input float-end" id="1" type="checkbox" value="option1">
-                    </li>
-                    <li class="list-group-item">
-                        <label for="1">title</label>
-                        <input class="form-check-input float-end" id="1" type="checkbox" value="option1">
-                    </li>
-                </ul>
-            </div> --}}
-            <div class="col-5 bg-white shadow">
-                <div class="p-3">
-                    <h5 class="card-title mb-3">Your Car check list</h5>
-                    <ul class="list-group"  id="list">
+            <div class="col col-md-5">
+                <div class="">
+                    {{-- <ul class="list-group"  id="list">
                         @foreach ($checkList as $cl)
                         <li class="list-group-item">
                             <label for="1" id="lb-{{ $cl->id }}" class="@if ($cl->status == '1')
@@ -43,7 +18,33 @@
                             <input name="checkList[]" @checked($cl->status == '1') class="form-check-input float-end" id="{{ $cl->id }}" type="checkbox" value="{{ $cl->id }}">
                         </li>
                         @endforeach
-                    </ul>
+                    </ul> --}}
+                    @foreach ($checkList as $key=>$cl)
+                    <ul class="list-group mb-3"  id="list">
+                        <li class="list-group-item">
+                            <span class="card-title text-primary">{{ $key }}</span>
+                        </li>
+                            @foreach ($cl as $c)
+                            <li class="list-group-item">
+                                <div class="py-1 d-flex">
+                                    <div class="">
+                                        @if ($c->status == '0')
+                                        <i class="text-warning" data-feather="alert-circle"></i>
+                                        @else
+                                        <i class="text-success" data-feather="check-circle"></i>
+                                        @endif
+                                    </div>
+                                    <div class="px-2">
+                                        <span class="lh-lg text-wrap"> {{ $c->title }}</span>
+                                    </div>
+                                    <div class="ms-auto @if($c->status == '1') d-none @endif">
+                                        <input class="form-check-input me-1" name="checkList[]" type="checkbox" value="{{ $c->id }}">
+                                    </div>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -56,31 +57,21 @@
 <script>
     $(document).ready(function() {
         $("input[name='checkList[]']").change(function(e){
-        if($(this).is(':checked')){
+            // if($(this).is(':checked')){            }
             console.log('checked', e.target.value);
             $clId = e.target.value;
             $.ajax({
                 type: 'get',
-                url: 'http://139.180.190.148/gtruck/public/driver/check-list/check',
+                url: 'http://139.180.190.148/gtruck/public/check-list/change-status',
                 data: {
                     'checkListId' : $clId,
                     'status' : '1'
                 },
                 dataType: 'json',
+                success: function(res){
+                    location.reload();
+                }
             });
-        }else{
-            console.log('unchecked');
-            $clId = e.target.value;
-            $.ajax({
-                type: 'get',
-                url: 'http://139.180.190.148/gtruck/public/driver/check-list/check',
-                data: {
-                    'checkListId' : $clId,
-                    'status' : '0'
-                },
-                dataType: 'json',
-            });
-        }
         })
     });
 

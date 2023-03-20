@@ -20,4 +20,14 @@ class AjaxController extends Controller
             'status' => $request->status,
         ]);
     }
+
+    public function changeStatus(Request $request){
+        logger($request->checkListId);
+        CheckList::where('id', $request->checkListId)->update([
+            'status' => $request->status,
+        ]);
+        return response()->json([
+            'message' => 'success',
+        ], 200);
+    }
 }

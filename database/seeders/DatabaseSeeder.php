@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
 
         CarDriver::create([
             'car_id' => 1,
-            'user_id' => 4
+            'user_id' => 3
         ]);
 
         $this->call([

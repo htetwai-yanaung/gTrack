@@ -7,7 +7,7 @@
         <h1 class="h3 mb-3"><strong>Car</strong> Details</h1>
 
         <div class="row gap-2 m-1">
-            <div class="col bg-white shadow">
+            <div class="col-12 col-md bg-white shadow">
                 <div class="container p-3">
                     <h5 class="card-title mb-3">Car Informatin</h5>
                     <div class="row mb-3">
@@ -121,12 +121,12 @@
                     @endif
                 </div>
             </div>
-            <div class="col bg-white shadow">
+            <div class="col-12 col-md bg-white shadow">
                 <div class="p-3">
-                    <h5 class="card-title mb-3">Car Informatin</h5>
+                    <h5 class="card-title mb-3">Car check list</h5>
 
 
-                    <ul class="list-group"  id="list">
+                    {{-- <ul class="list-group"  id="list">
                         @foreach ($checkList as $cl)
                         <li class="list-group-item">
                             <label for="" class="@if ($cl->status == '1')
@@ -137,7 +137,17 @@
                             @endif
                         </li>
                         @endforeach
-                    </ul>
+                    </ul> --}}
+                    @foreach ($checkList as $list)
+                        <div class="py-1">
+                            @if ($list->status == '0')
+                            <i class="text-warning" data-feather="alert-circle"></i>
+                            @else
+                            <i class="text-success" data-feather="check-circle"></i>
+                            @endif
+                            <span class="lh-lg"> {{ $list->title }}</span>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

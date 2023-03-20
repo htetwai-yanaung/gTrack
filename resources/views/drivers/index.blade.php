@@ -7,7 +7,7 @@
         <h1 class="h3 mb-3"><strong>Drivers</strong> Profile</h1>
 
         <div class="row">
-            <div class="col-5">
+            <div class="col col-md-5">
                 <div class="card mb-3">
                     <div class="card-header">
                         <h5 class="card-title mb-0">Profile Details</h5>
