@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('ended_date');
             $table->string('started_time');
             $table->string('ended_time');
-            $table->string('destination');
+            $table->string('from');
+            $table->string('to');
             $table->integer('distance');
             $table->string('fuel');
             $table->integer('expenses');
