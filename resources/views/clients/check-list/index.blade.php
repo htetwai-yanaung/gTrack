@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 ">
-            @foreach ($cl_list as $cl)
+            @foreach ($checkList as $cl)
             <div class="col mb-3">
                 <div class="bg-white rounded shadow p-3 h-100">
                     <h5 class="card-title text-primary">{{ $cl[0]->cl_number }} (<small>{{ $cl[0]->created_at->format('d-m-Y') }}</small>)</h5>

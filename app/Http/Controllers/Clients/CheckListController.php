@@ -12,14 +12,16 @@ class CheckListController extends Controller
 {
     //index
     public function index(){
-        $checkLists = CheckList::select('cl_number', DB::raw('count(*) as total'))->groupBy('cl_number')->orderBy('created_at', 'desc')->get();
-        $cl_number_arr = [];
-        foreach($checkLists as $checkList){
-            $list = CheckList::where('cl_number',$checkList->cl_number)->orderBy('status', 'asc')->get();
-            array_push($cl_number_arr, $list);
-        }
+        // $checkLists = CheckList::select('cl_number', DB::raw('count(*) as total'))->groupBy('cl_number')->orderBy('created_at', 'desc')->get();
+        // $cl_number_arr = [];
+        // foreach($checkLists as $checkList){
+        //     $list = CheckList::where('cl_number',$checkList->cl_number)->orderBy('status', 'asc')->get();
+        //     array_push($cl_number_arr, $list);
+        // }
+        $checkList = CheckList::orderBy('created_at','desc')->orderBy('status','asc')->get()->groupBy('cl_number');
+        // return $checkList;
         return view('clients.check-list.index')->with([
-            'cl_list' => $cl_number_arr
+            'checkList' => $checkList
         ]);
     }
 
