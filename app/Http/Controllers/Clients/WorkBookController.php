@@ -48,7 +48,7 @@ class WorkBookController extends Controller
             'ended_time' => $request->ended_time,
         ]);
 
-        return back();
+        return redirect()->route('workbook.history');
     }
 
     //history
