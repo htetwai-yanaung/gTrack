@@ -35,7 +35,8 @@ class AuthController extends Controller
     //what role
     public function role(){
         if(Auth::user()->role == 'admin'){
-            return view('admin.index');
+            $users = User::where('role','client')->get();
+            return view('admin.index')->with(['users' => $users]);
         }else if(Auth::user()->role == 'client'){
             return redirect()->route('cars.index');
         }

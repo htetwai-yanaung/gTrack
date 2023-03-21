@@ -31,12 +31,14 @@ class DatabaseSeeder extends Seeder
                 'company_name' => 'Admin',
                 'email' => 'admin@gmail.com',
                 'role' => 'admin',
+                'phone' => '09974562487',
                 'password' => Hash::make('password'),
             ],
             [
                 'company_name' => 'Google',
                 'email' => 'google@gmail.com',
                 'role' => 'client',
+                'phone' => '09974562487',
                 'password' => Hash::make('password'),
             ],
         ];
