@@ -94,35 +94,35 @@
             });
         })
 
-        $.ajax({
-            type: 'get',
-            url: 'http://139.180.190.148/gtruck/public/check-list/list',
-            data: {
-                'carId' : $selectedCarId
-            },
-            dataType: 'json',
-            success: function(res){
-                showList(res);
-            }
-        });
+        // $.ajax({
+        //     type: 'get',
+        //     url: 'http://139.180.190.148/gtruck/public/check-list/list',
+        //     data: {
+        //         'carId' : $selectedCarId
+        //     },
+        //     dataType: 'json',
+        //     success: function(res){
+        //         showList(res);
+        //     }
+        // });
 
-        showList = (res) => {
-            $list = '';
-            for($i=0;$i<res.length;$i++){
-                console.log(res[$i]);
-                $list += `
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <label for="">${res[$i]['title']}</label>
-                    <form action="{{ route('checkList.delete') }}" method="get">
-                        @csrf
-                        <input type="hidden" name="checkListId" value="${res[$i]['id']}">
-                        <button class="btn btn-outline-danger btn-sm">&times;</button>
-                    </form>
-                </li>
-                `;
-            }
-            $('#list').html($list);
-        }
+        // showList = (res) => {
+        //     $list = '';
+        //     for($i=0;$i<res.length;$i++){
+        //         console.log(res[$i]);
+        //         $list += `
+        //         <li class="list-group-item d-flex justify-content-between align-items-center">
+        //             <label for="">${res[$i]['title']}</label>
+        //             <form action="{{ route('checkList.delete') }}" method="get">
+        //                 @csrf
+        //                 <input type="hidden" name="checkListId" value="${res[$i]['id']}">
+        //                 <button class="btn btn-outline-danger btn-sm">&times;</button>
+        //             </form>
+        //         </li>
+        //         `;
+        //     }
+        //     $('#list').html($list);
+        // }
 
         $('#add-btn').click(function() {
             $title = $('#title').val();
